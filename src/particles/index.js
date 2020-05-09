@@ -1,8 +1,6 @@
 import {BufferGeometry, BufferAttribute, Vector3, ShaderMaterial, Points} from "three";
+import {random} from '../helpers';
 
-function random(min, max) {
-    return Math.random() * (max - min) + min;
-}
 
 /**
  * @param {BufferGeometry | Geometry} geometry
@@ -22,8 +20,6 @@ const computeEdges = function computeEdges(geometry, matrixWorld) {
     const verticesCount = geometry.attributes.position.count;
 
     const edges = new Map();
-
-    // let edgesSum = 0;
 
     /**
      * Make edge from vertices
@@ -50,7 +46,6 @@ const computeEdges = function computeEdges(geometry, matrixWorld) {
         )).applyMatrix4(matrixWorld);
 
         const edgeVertex = (new Vector3()).subVectors(endVertex, startVertex);
-        // edgesSum += edgeLength;
 
         edges.set(key, {
             startVertex,
@@ -99,7 +94,6 @@ function createParticleMesh(mesh, config = {}) {
     const edgesSummaryLength = getEdgesSummaryLength(edges);
 
     const particlesCount = (config.particlesCount || 10000);
-    // const globalStep = (config.particlesCount || 10000) / edgesSummaryLength;
     const particlesDensity = Math.abs((config.particlesDensity || 1.5) / 2);
 
     // Fill edges by particles
