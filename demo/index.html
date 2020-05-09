@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Particles Demo</title>
+    <style>
+        body {
+            position: fixed;
+            overflow: hidden;
+            margin: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+        canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        .controls {
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            right: 0;
+        }
+
+        .controls__item {
+            display: block;
+            margin-bottom: 5px;
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+<canvas id="viewer"></canvas>
+<div class="controls">
+    <button class="controls__item collapse">Collapse</button>
+    <button class="controls__item spread">Spread</button>
+    <button class="controls__item restore">Restore</button>
+    <button class="controls__item chain">Run chain</button>
+</div>
+</body>
+</html>
