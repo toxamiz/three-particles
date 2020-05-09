@@ -24,25 +24,24 @@ controls.enableKeys = false;
 controls.maxPolarAngle = Math.PI;
 
 let geometry = new THREE.SphereGeometry(2);
-// let geometry = new THREE.BoxGeometry();
 let material = new THREE.MeshBasicMaterial({color: 0x00ff00});
-let cube = new THREE.Mesh(geometry, material);
-let c = createParticleMesh(cube, {particlesDensity: 0.1, particlesCount: 5000});
-let Ef = new EffectCollection();
-Ef.add(new Collapse('collapse', 60));
-Ef.add(new Spread('spread', 240));
-Ef.add(new Restore('restore', 120));
-Ef.applyEffects(c);
-initControls(Ef);
+let mesh = new THREE.Mesh(geometry, material);
+let particleMesh = createParticleMesh(mesh, {particlesDensity: 0.1, particlesCount: 5000});
+let effectCollection = new EffectCollection();
+effectCollection.add(new Collapse('collapse', 60));
+effectCollection.add(new Spread('spread', 240));
+effectCollection.add(new Restore('restore', 120));
+effectCollection.applyEffects(particleMesh);
+initControls(effectCollection);
 
-scene.add(c);
+scene.add(particleMesh);
 
 camera.position.z = 5;
 
 let animate = function () {
     requestAnimationFrame(animate);
 
-    Ef.update();
+    effectCollection.update();
 
     renderer.render(scene, camera);
 };
